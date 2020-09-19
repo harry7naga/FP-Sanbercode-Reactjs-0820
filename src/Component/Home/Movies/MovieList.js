@@ -17,11 +17,11 @@ const MovieList = (props) => {
                         </Row>
                     }</>) : (
                         <>{
-                            props.movies.map((item, index) => {
+                            props.movies.map((item) => {
                                 return (
                                     <Row className="form-group" key={item.id}>
                                         <Col>
-                                            <Card border="dark">
+                                            <Card border="primary">
                                                 <Card.Body>
                                                     <Card.Title>{item.title}</Card.Title>
                                                     <Card.Text>

@@ -1,20 +1,20 @@
 import Axios from 'axios'
 import React, { useContext, useEffect } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 import { DataContext } from '../../../Logic/DataContext'
 import { UserContext } from '../../../Logic/UserContext'
-import MovieList from './MovieList'
-import MovieTable from './MovieTable'
+import GameList from './GameList'
+import GameTable from './GameTable'
 
-const Movies = () => {
+const Games = () => {
     const [api, user, , isLogin] = useContext(UserContext)
-    const [movies, setMovies] = useContext(DataContext)
+    const [, , games, setGames] = useContext(DataContext)
 
     useEffect(() => {
-        if (movies === null) {
-            Axios.get(`${api}/data-movie`)
+        if (games === null) {
+            Axios.get(`${api}/data-game`)
                 .then(res => {
-                    setMovies(res.data)
+                    setGames(res.data)
                 }).catch(err => {
                     alert(err)
                 })
@@ -25,15 +25,15 @@ const Movies = () => {
         <>
             <Row>
                 <Col>
-                    <h3>List Movies</h3>
+                    <h3>List Games</h3>
                 </Col>
             </Row>
             <hr />
             {
-                isLogin === true ? (<><MovieTable /></>) : (<><MovieList movies={movies} /></>)
+                isLogin === true ? (<><GameTable /></>) : (<><GameList games={games} /></>)
             }
         </>
     )
 }
 
-export default Movies
+export default Games
